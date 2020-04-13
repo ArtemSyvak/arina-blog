@@ -1,23 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import { Button } from 'react-bootstrap';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route
+} from "react-router-dom";
+import Home from './views/Home';
+import About from './views/About';
+import Articles from './views/Articles';
+import Article from './views/Article';
+import Admin from './views/Admin';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <Router>
+    <div>
+      {/* @TODO Header */}
+      
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About</Link></li>
+      <li><Link to="/articles">Articles</Link></li>
+      <li><Link to="/article/5">Article</Link></li>
+      <li><Link to="/admin">Admin</Link></li>
+    </ul>
+    
 
-        <Button 
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Learn React
-        </Button>
-      </header>
-    </div>
+
+
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/articles">
+            <Articles />
+          </Route>
+          <Route path="/article/:id">
+            <Article />
+          </Route>  
+          <Route path="/admin">
+            <Admin />
+          </Route>
+        </Switch>
+      {/* @TODO Footer */}
+      </div>
+    </Router>
   );
 }
 
